@@ -27,10 +27,13 @@ public class ScreenProcessor extends AbstractProcessor implements IMinecraft {
         this.currentScreen = screen;
 
         if (this.currentScreen != null) {
+            mc.setIngameNotInFocus();
             ScaledResolution scaledresolution = new ScaledResolution(mc);
             int width = scaledresolution.getScaledWidth();
             int height = scaledresolution.getScaledHeight();
             this.currentScreen.setSize(width, height);
+        } else {
+            mc.setIngameFocus();
         }
     }
 
@@ -55,6 +58,8 @@ public class ScreenProcessor extends AbstractProcessor implements IMinecraft {
     public void onMouse(MouseInputEvent event) {
         if (currentScreen != null) {
             currentScreen.onMouse();
+        } else {
+            mc.setIngameFocus();
         }
     }
 

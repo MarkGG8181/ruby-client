@@ -40,6 +40,14 @@ public abstract class AbstractModule implements IUtility {
     public void onDisable() {
     }
 
+    public String getName() {
+        return info.name();
+    }
+
+    public ModuleCategory getCategory() {
+        return info.category();
+    }
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
 

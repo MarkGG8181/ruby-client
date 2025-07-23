@@ -1,8 +1,12 @@
 package io.github.ruby.screen.impl;
 
+import io.github.ruby.module.AbstractModule;
 import io.github.ruby.module.ModuleCategory;
 import io.github.ruby.screen.AbstractScreen;
+import io.github.ruby.screen.element.impl.ButtonElement;
 import io.github.ruby.screen.element.impl.TextElement;
+import io.github.ruby.screen.element.option.TextAlignment;
+import io.github.ruby.storage.impl.ModuleStorage;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.HashMap;
@@ -28,14 +32,22 @@ public class ClickGuiScreen extends AbstractScreen {
             children.add(TextElement.builder()
                     .text(entry.getKey().toString())
                     .position(entry.getValue().getX(), entry.getValue().getY())
+                    .textAlignment(TextAlignment.CENTER)
                     .background(true)
                     .build(this)
             );
-        }
-    }
 
-    @Override
-    public void onRender(int mouseX, int mouseY, float partialTicks) {
-        children.forEach(c -> c.onRender(mouseX, mouseY, partialTicks));
+            float offset = entry.getValue().getY() + 14;
+            for (AbstractModule module : ModuleStorage.INSTANCE.getByCategory(entry.getKey())) {
+                children.add(ButtonElement.builder()
+                        .text(module.getName())
+                        .textAlignment(TextAlignment.CENTER_LEFT)
+                        .position(entry.getValue().getX(), offset)
+                        .onClick(() -> module.setEnabled(!module.isEnabled()))
+                        .build(this)
+                );
+                offset += 14;
+            }
+        }
     }
 }

@@ -7,8 +7,11 @@ import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import io.github.ruby.event.impl.KeyboardInputEvent;
 import io.github.ruby.module.AbstractModule;
+import io.github.ruby.module.ModuleCategory;
 import io.github.ruby.module.ModuleInfo;
 import io.github.ruby.storage.AbstractStorage;
+
+import java.util.List;
 
 public class ModuleStorage extends AbstractStorage<AbstractModule> {
     public static final ModuleStorage INSTANCE = new ModuleStorage();
@@ -37,6 +40,10 @@ public class ModuleStorage extends AbstractStorage<AbstractModule> {
                 }
             }
         }
+    }
+
+    public List<AbstractModule> getByCategory(ModuleCategory category) {
+        return list.stream().filter(m -> m.getCategory().equals(category)).toList();
     }
 
     @Subscribe
