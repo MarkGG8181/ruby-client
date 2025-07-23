@@ -78,7 +78,7 @@ public class ListElement extends AbstractElement {
         private String title;
         private String[] content;
         private float x, y;
-        private float width = 120, height = 0;
+        private float width = 80, height = 0;
         private float offsetAmount = 10;
         private AbstractScreen parent;
         private TextScale titleScale = TextScale.LARGE;

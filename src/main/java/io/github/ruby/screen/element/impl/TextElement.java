@@ -52,7 +52,7 @@ public class TextElement extends AbstractElement {
         private String name;
         private String text;
         private float x, y;
-        private float width = 120, height = 14;
+        private float width = 80, height = 14;
         private AbstractScreen parent;
         private TextScale textScale = TextScale.NORMAL;
         private boolean medium = false;
