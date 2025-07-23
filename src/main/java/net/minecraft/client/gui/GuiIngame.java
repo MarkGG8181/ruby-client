@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import io.github.ruby.event.impl.Render2DEvent;
 import io.github.ruby.util.game.font.impl.MinecraftFontRenderer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -347,6 +348,8 @@ public class GuiIngame extends Gui {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
+
+        new Render2DEvent().post();
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {

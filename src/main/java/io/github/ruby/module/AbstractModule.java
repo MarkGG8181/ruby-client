@@ -2,13 +2,14 @@ package io.github.ruby.module;
 
 import io.github.ruby.module.setting.AbstractSetting;
 import io.github.ruby.storage.impl.ModuleStorage;
+import io.github.ruby.util.IMinecraft;
 import io.github.ruby.util.IUtility;
 import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractModule implements IUtility {
+public abstract class AbstractModule implements IUtility, IMinecraft {
     @NonNull
     private final ModuleInfo info;
     public final List<AbstractSetting<?>> settings = new ArrayList<>();

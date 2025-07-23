@@ -37,7 +37,7 @@ public class ClickGuiScreen extends AbstractScreen {
                     .build(this)
             );
 
-            float offset = entry.getValue().getY() + 14;
+            float offset = entry.getValue().getY() + 13.5f;
             for (AbstractModule module : ModuleStorage.INSTANCE.getByCategory(entry.getKey())) {
                 children.add(ButtonElement.builder()
                         .text(module.getName())
@@ -49,5 +49,10 @@ public class ClickGuiScreen extends AbstractScreen {
                 offset += 14;
             }
         }
+    }
+
+    @Override
+    public void onRender(int mouseX, int mouseY, float partialTicks) {
+        children.forEach(c -> c.onRender(mouseX, mouseY, partialTicks));
     }
 }
