@@ -1,6 +1,5 @@
 package io.github.ruby.storage.impl;
 
-import io.github.ruby.storage.AbstractStorage;
 import io.github.ruby.util.IConstants;
 
 import java.io.*;
@@ -11,18 +10,10 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class ResourceStorage extends AbstractStorage<String> {
-    public static final ResourceStorage INSTANCE = new ResourceStorage("/assets/" + IConstants.ID + "/");
+public class ResourceStorage {
+    public static final ResourceStorage INSTANCE = new ResourceStorage();
 
-    private final String basePath;
-
-    public ResourceStorage(String basePath) {
-        this.basePath = basePath;
-    }
-
-    @Override
-    public void init() {
-    }
+    public static final String basePath = "/assets/" + IConstants.ID + "/";
 
     public InputStream getInputStream(String path) throws FileNotFoundException {
         InputStream stream = getClass().getResourceAsStream(basePath + path);
