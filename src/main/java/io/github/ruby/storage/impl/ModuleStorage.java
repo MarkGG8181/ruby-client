@@ -1,15 +1,19 @@
 package io.github.ruby.storage.impl;
 
+import com.google.common.eventbus.Subscribe;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
+import io.github.ruby.event.impl.KeyboardInputEvent;
 import io.github.ruby.module.AbstractModule;
 import io.github.ruby.module.ModuleInfo;
 import io.github.ruby.storage.AbstractStorage;
 
 public class ModuleStorage extends AbstractStorage<AbstractModule> {
     public static final ModuleStorage INSTANCE = new ModuleStorage();
+
+    public AbstractModule lastModule;
 
     @Override
     public void init() {
@@ -33,5 +37,14 @@ public class ModuleStorage extends AbstractStorage<AbstractModule> {
                 }
             }
         }
+    }
+
+    @Subscribe
+    public void onKey(KeyboardInputEvent event) {
+        list.forEach(mod -> {
+            if (mod.key == event.key) {
+                mod.setEnabled(!mod.isEnabled());
+            }
+        });
     }
 }
