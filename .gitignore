@@ -1,0 +1,14 @@
+test_run/
+target/
+run/
+out/
+
+.idea/
+.mvn/
+*.iml
+
+.project
+.classpath
+
+*.jar
+*.py
