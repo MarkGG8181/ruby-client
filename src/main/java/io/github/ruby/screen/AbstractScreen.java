@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +81,7 @@ public abstract class AbstractScreen implements IMinecraft, IFonts, IColors {
     }
 
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        ShaderUtil.rect(0, 0, width, height, new Color(20, 20, 20));
+        ShaderUtil.rect(0, 0, width, height, BACKGROUND);
         children.forEach(c -> c.onRender(mouseX, mouseY, partialTicks));
     }
 

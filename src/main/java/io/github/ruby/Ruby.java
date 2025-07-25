@@ -13,11 +13,11 @@ public enum Ruby implements IUtility, IConstants {
     INSTANCE;
 
     public void start() {
-        Display.setTitle(TITLE);
         FontStorage.INSTANCE.init();
         ModuleStorage.INSTANCE.init();
         ProcessorStorage.INSTANCE.init();
-        LOGGER.info("Started {} v{}", NAME, VERSION);
+        Display.setTitle(TITLE);
+        LOGGER.info("Started {} {}", NAME, VERSION);
     }
 
     public void stop() {
