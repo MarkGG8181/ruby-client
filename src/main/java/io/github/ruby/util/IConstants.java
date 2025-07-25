@@ -7,7 +7,7 @@ public interface IConstants {
     String[] CREATORS = {"desync_lord"};
     String JOINED_CREATORS = String.join(",", CREATORS);
 
-    String TITLE = String.format("%s %s - made by %s", NAME, VERSION, JOINED_CREATORS);
+    String TITLE = String.format("%s %s", NAME, VERSION);
 
     String[] CHANGES = {
             "§a[+]§f Main menu",
