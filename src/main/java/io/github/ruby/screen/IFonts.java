@@ -10,4 +10,6 @@ public interface IFonts {
     CustomFontRenderer MEDIUM_18 = FontStorage.INSTANCE.getFont("Roboto-Medium", 18);
     CustomFontRenderer REGULAR_20 = FontStorage.INSTANCE.getFont("Roboto-Regular", 20);
     CustomFontRenderer MEDIUM_20 = FontStorage.INSTANCE.getFont("Roboto-Medium", 20);
+
+    CustomFontRenderer REGULAR_40 = FontStorage.INSTANCE.getFont("Roboto-Regular", 40);
 }

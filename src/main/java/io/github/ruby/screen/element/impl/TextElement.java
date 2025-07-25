@@ -115,10 +115,6 @@ public class TextElement extends AbstractElement {
                 LOGGER.warn("Please make sure text isn't null");
             }
 
-            if (parent == null) {
-                throw new IllegalStateException("Element parent must not be null!");
-            }
-
             return new TextElement(this);
         }
     }

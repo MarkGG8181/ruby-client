@@ -12,6 +12,7 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +37,12 @@ import javax.imageio.ImageIO;
 
 import io.github.ruby.Ruby;
 import io.github.ruby.event.impl.*;
+import io.github.ruby.screen.IColors;
+import io.github.ruby.screen.IFonts;
+import io.github.ruby.screen.element.impl.ListElement;
+import io.github.ruby.screen.element.option.TextScale;
+import io.github.ruby.util.IConstants;
+import io.github.ruby.util.game.shader.ShaderUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.SoundHandler;
@@ -556,6 +563,7 @@ public class Minecraft implements IThreadListener {
             this.displayGuiScreen(new GuiMainMenu());
         }
 
+
         this.renderEngine.deleteTexture(this.mojangLogo);
         this.mojangLogo = null;
         this.loadingScreen = new LoadingScreenRenderer(this);
@@ -584,7 +592,7 @@ public class Minecraft implements IThreadListener {
 
     private void createDisplay() {
         Display.setResizable(true);
-        Display.setTitle("Minecraft 1.8.9");
+        Display.setTitle(IConstants.LOADING_TITLE);
         Display.create();
     }
 
@@ -775,49 +783,46 @@ public class Minecraft implements IThreadListener {
 
     private void drawSplashScreen(TextureManager textureManagerInstance) throws LWJGLException {
         ScaledResolution scaledresolution = new ScaledResolution(this);
-        int i = scaledresolution.getScaleFactor();
-        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i, true);
+        int scale = scaledresolution.getScaleFactor();
+        float width = scaledresolution.getScaledWidth();
+        float height = scaledresolution.getScaledHeight();
+
+        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * scale, scaledresolution.getScaledHeight() * scale, true);
         framebuffer.bindFramebuffer(false);
-        GlStateManager.matrixMode(5889);
+
+        GlStateManager.matrixMode(GL11.GL_PROJECTION);
         GlStateManager.loadIdentity();
-        GlStateManager.ortho(0.0D, (double) scaledresolution.getScaledWidth(), (double) scaledresolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
-        GlStateManager.matrixMode(5888);
+        GlStateManager.ortho(0.0D, scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
+        GlStateManager.matrixMode(GL11.GL_MODELVIEW);
         GlStateManager.loadIdentity();
         GlStateManager.translate(0.0F, 0.0F, -2000.0F);
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         GlStateManager.disableDepth();
         GlStateManager.enableTexture2D();
-        InputStream inputstream = null;
 
-        try {
-            inputstream = this.mcDefaultResourcePack.getInputStream(locationMojangPng);
-            this.mojangLogo = textureManagerInstance.getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(inputstream)));
-            textureManagerInstance.bindTexture(this.mojangLogo);
-        } catch (IOException ioexception) {
-            logger.error((String) ("Unable to load logo: " + locationMojangPng), (Throwable) ioexception);
-        } finally {
-            IOUtils.closeQuietly(inputstream);
-        }
+        ShaderUtil.rect(0, 0, width, height, IColors.BACKGROUND);
+        ShaderUtil.image("icons8-ruby-100.png", 5, 5, 50, 50, 0);
+        IFonts.REGULAR_40.drawStringWithShadow("Loading", width / 2f - IFonts.REGULAR_40.getWidth("Loading") / 2f, 100, -1);
 
-        Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(0.0D, (double) this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos((double) this.displayWidth, (double) this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos((double) this.displayWidth, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        tessellator.draw();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        int j = 256;
-        int k = 256;
-        this.draw((scaledresolution.getScaledWidth() - j) / 2, (scaledresolution.getScaledHeight() - k) / 2, 0, 0, j, k, 255, 255, 255, 255);
+        ListElement el = ListElement.builder()
+                .title("Changelog")
+                .position(8, 5 + 50)
+                .content(IConstants.CHANGES, 10)
+                .background(false)
+                .titleScale(TextScale.LARGE)
+                .contentScale(TextScale.NORMAL).build(null);
+        el.onRender(0, 0, 0);
+
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
+
         framebuffer.unbindFramebuffer();
-        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i);
+        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * scale, scaledresolution.getScaledHeight() * scale);
+
         GlStateManager.enableAlpha();
         GlStateManager.alphaFunc(516, 0.1F);
+
         this.updateDisplay();
     }
 
