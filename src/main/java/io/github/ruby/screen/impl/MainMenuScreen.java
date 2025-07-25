@@ -90,13 +90,5 @@ public class MainMenuScreen extends AbstractScreen {
                 .contentScale(TextScale.NORMAL)
                 .build(this)
         );
-
-        children.add(ImageElement.builder()
-                .texture("anime-girl.png")
-                .position(width - 190.5f / 1.3f, height - 328 / 1.3f)
-                .size(190.5f / 1.3f, 328 / 1.3f)
-                .background(false)
-                .build(this)
-        );
     }
 }
