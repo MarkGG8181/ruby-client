@@ -47,7 +47,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
@@ -83,9 +83,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         this.serverListSelector.handleMouseInput();
     }
 
@@ -104,9 +104,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
 
         if (this.lanServerList.getWasUpdated())
         {
@@ -121,7 +121,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
 
@@ -368,7 +368,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
         this.hoveringText = null;
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.serverListSelector.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.title", new Object[0]), this.width / 2, 20, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
@@ -441,9 +441,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state)
+    protected void onRelease(int mouseX, int mouseY, int state)
     {
-        super.mouseReleased(mouseX, mouseY, state);
+        super.onRelease(mouseX, mouseY, state);
         this.serverListSelector.mouseReleased(mouseX, mouseY, state);
     }
 

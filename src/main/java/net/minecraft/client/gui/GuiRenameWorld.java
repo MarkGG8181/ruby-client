@@ -21,7 +21,7 @@ public class GuiRenameWorld extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.field_146583_f.updateCursorCounter();
     }
@@ -30,7 +30,7 @@ public class GuiRenameWorld extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
@@ -47,7 +47,7 @@ public class GuiRenameWorld extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
     }
@@ -101,7 +101,7 @@ public class GuiRenameWorld extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("selectWorld.renameTitle", new Object[0]), this.width / 2, 20, 16777215);
         this.drawString(this.fontRendererObj, I18n.format("selectWorld.enterName", new Object[0]), this.width / 2 - 100, 47, 10526880);
         this.field_146583_f.drawTextBox();

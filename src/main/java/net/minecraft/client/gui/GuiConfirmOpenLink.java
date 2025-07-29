@@ -27,9 +27,9 @@ public class GuiConfirmOpenLink extends GuiYesNo
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
-        super.initGui();
+        super.onInit();
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(0, this.width / 2 - 50 - 105, this.height / 6 + 96, 100, 20, this.confirmButtonText));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 50, this.height / 6 + 96, 100, 20, this.copyLinkButtonText));

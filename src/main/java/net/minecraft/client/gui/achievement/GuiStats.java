@@ -52,7 +52,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.screenTitle = I18n.format("gui.stats", new Object[0]);
         this.doesGuiPauseGame = true;
@@ -62,9 +62,9 @@ public class GuiStats extends GuiScreen implements IProgressMeter
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
 
         if (this.displaySlot != null)
         {
@@ -152,7 +152,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
     {
         if (this.doesGuiPauseGame)
         {
-            this.drawDefaultBackground();
+            this.drawBackground();
             this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.downloadingStats", new Object[0]), this.width / 2, this.height / 2, 16777215);
             this.drawCenteredString(this.fontRendererObj, lanSearchStates[(int)(Minecraft.getSystemTime() / 150L % (long)lanSearchStates.length)], this.width / 2, this.height / 2 + this.fontRendererObj.FONT_HEIGHT * 2, 16777215);
         }
@@ -248,7 +248,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawBackground()
         {
-            GuiStats.this.drawDefaultBackground();
+            GuiStats.this.drawBackground();
         }
 
         protected void drawListHeader(int p_148129_1_, int p_148129_2_, Tessellator p_148129_3_)
@@ -612,7 +612,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawBackground()
         {
-            GuiStats.this.drawDefaultBackground();
+            GuiStats.this.drawBackground();
         }
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
@@ -794,7 +794,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawBackground()
         {
-            GuiStats.this.drawDefaultBackground();
+            GuiStats.this.drawBackground();
         }
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)

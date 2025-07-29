@@ -13,7 +13,7 @@ public class GuiIngameMenu extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.buttonList.clear();
         int i = -16;
         int j = 98;
@@ -79,15 +79,15 @@ public class GuiIngameMenu extends GuiScreen {
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen() {
-        super.updateScreen();
+    public void onUpdate() {
+        super.onUpdate();
     }
 
     /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("menu.game", new Object[0]), this.width / 2, 40, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
     }

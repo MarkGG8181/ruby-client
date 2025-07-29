@@ -18,7 +18,7 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
 
@@ -132,9 +132,9 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
         ++this.enableButtonsTimer;
 
         if (this.enableButtonsTimer == 20)

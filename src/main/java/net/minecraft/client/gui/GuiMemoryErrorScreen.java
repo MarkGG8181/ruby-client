@@ -9,7 +9,7 @@ public class GuiMemoryErrorScreen extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
         this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 155, this.height / 4 + 120 + 12, I18n.format("gui.toTitle", new Object[0])));
@@ -44,7 +44,7 @@ public class GuiMemoryErrorScreen extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, "Out of memory!", this.width / 2, this.height / 4 - 60 + 20, 16777215);
         this.drawString(this.fontRendererObj, "Minecraft has run out of memory.", this.width / 2 - 140, this.height / 4 - 60 + 60 + 0, 10526880);
         this.drawString(this.fontRendererObj, "This could be caused by a bug in the game or by the", this.width / 2 - 140, this.height / 4 - 60 + 60 + 18, 10526880);

@@ -26,7 +26,7 @@ public class GuiVideoSettings extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.screenTitle = I18n.format("options.videoTitle", new Object[0]);
         this.buttonList.clear();
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height - 27, I18n.format("gui.done", new Object[0])));
@@ -53,8 +53,8 @@ public class GuiVideoSettings extends GuiScreen {
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException {
-        super.handleMouseInput();
+    public void onMouse() throws IOException {
+        super.onMouse();
         this.optionsRowList.handleMouseInput();
     }
 
@@ -82,23 +82,23 @@ public class GuiVideoSettings extends GuiScreen {
             ScaledResolution scaledresolution = new ScaledResolution(this.mc);
             int j = scaledresolution.getScaledWidth();
             int k = scaledresolution.getScaledHeight();
-            this.setWorldAndResolution(this.mc, j, k);
+            this.setSize(this.mc, j, k);
         }
     }
 
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
+    protected void onRelease(int mouseX, int mouseY, int state) {
         int i = this.guiGameSettings.guiScale;
-        super.mouseReleased(mouseX, mouseY, state);
+        super.onRelease(mouseX, mouseY, state);
         this.optionsRowList.mouseReleased(mouseX, mouseY, state);
 
         if (this.guiGameSettings.guiScale != i) {
             ScaledResolution scaledresolution = new ScaledResolution(this.mc);
             int j = scaledresolution.getScaledWidth();
             int k = scaledresolution.getScaledHeight();
-            this.setWorldAndResolution(this.mc, j, k);
+            this.setSize(this.mc, j, k);
         }
     }
 
@@ -106,7 +106,7 @@ public class GuiVideoSettings extends GuiScreen {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.optionsRowList.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.screenTitle, this.width / 2, 5, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);

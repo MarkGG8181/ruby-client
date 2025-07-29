@@ -20,7 +20,7 @@ public class GuiScreenServerList extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.ipEdit.updateCursorCounter();
     }
@@ -29,7 +29,7 @@ public class GuiScreenServerList extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
@@ -45,7 +45,7 @@ public class GuiScreenServerList extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
         this.mc.gameSettings.lastServer = this.ipEdit.getText();
@@ -101,7 +101,7 @@ public class GuiScreenServerList extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("selectServer.direct", new Object[0]), this.width / 2, 20, 16777215);
         this.drawString(this.fontRendererObj, I18n.format("addServer.enterIp", new Object[0]), this.width / 2 - 100, 100, 10526880);
         this.ipEdit.drawTextBox();

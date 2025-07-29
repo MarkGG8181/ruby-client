@@ -43,7 +43,7 @@ public class GuiScreenResourcePacks extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.buttonList.add(new GuiOptionButton(2, this.width / 2 - 154, this.height - 48, I18n.format("resourcePack.openFolder", new Object[0])));
         this.buttonList.add(new GuiOptionButton(1, this.width / 2 + 4, this.height - 48, I18n.format("gui.done", new Object[0])));
 
@@ -77,8 +77,8 @@ public class GuiScreenResourcePacks extends GuiScreen {
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException {
-        super.handleMouseInput();
+    public void onMouse() throws IOException {
+        super.onMouse();
         this.selectedResourcePacksList.handleMouseInput();
         this.availableResourcePacksList.handleMouseInput();
     }
@@ -186,15 +186,15 @@ public class GuiScreenResourcePacks extends GuiScreen {
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
-        super.mouseReleased(mouseX, mouseY, state);
+    protected void onRelease(int mouseX, int mouseY, int state) {
+        super.onRelease(mouseX, mouseY, state);
     }
 
     /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawBackground(0);
+        this.drawBackground();
         this.availableResourcePacksList.drawScreen(mouseX, mouseY, partialTicks);
         this.selectedResourcePacksList.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, I18n.format("resourcePack.title", new Object[0]), this.width / 2, 16, 16777215);

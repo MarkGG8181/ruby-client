@@ -106,8 +106,8 @@ public class GuiScreenBook extends GuiScreen {
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen() {
-        super.updateScreen();
+    public void onUpdate() {
+        super.onUpdate();
         ++this.updateCount;
     }
 
@@ -115,7 +115,7 @@ public class GuiScreenBook extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.buttonList.clear();
         Keyboard.enableRepeatEvents(true);
 
@@ -138,7 +138,7 @@ public class GuiScreenBook extends GuiScreen {
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed() {
+    public void onClose() {
         Keyboard.enableRepeatEvents(false);
     }
 

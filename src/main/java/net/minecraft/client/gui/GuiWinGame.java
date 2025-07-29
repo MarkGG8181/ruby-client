@@ -33,7 +33,7 @@ public class GuiWinGame extends GuiScreen {
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen() {
+    public void onUpdate() {
         SoundHandler soundhandler = this.mc.getSoundHandler();
 
         if (this.time == 0) {
@@ -75,7 +75,7 @@ public class GuiWinGame extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         if (this.lines == null) {
             this.lines = Lists.<String>newArrayList();
 

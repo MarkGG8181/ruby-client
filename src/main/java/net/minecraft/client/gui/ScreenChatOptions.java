@@ -20,7 +20,7 @@ public class ScreenChatOptions extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         int i = 0;
         this.chatTitle = I18n.format("options.chat.title", new Object[0]);
 
@@ -58,7 +58,7 @@ public class ScreenChatOptions extends GuiScreen {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, this.chatTitle, this.width / 2, 20, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
     }

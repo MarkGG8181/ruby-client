@@ -51,7 +51,7 @@ public class GuiChat extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.sentHistoryCursor = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
@@ -66,7 +66,7 @@ public class GuiChat extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
         this.mc.ingameGUI.getChatGUI().resetScroll();
@@ -75,7 +75,7 @@ public class GuiChat extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.inputField.updateCursorCounter();
     }
@@ -140,9 +140,9 @@ public class GuiChat extends GuiScreen
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         int i = Mouse.getEventDWheel();
 
         if (i != 0)

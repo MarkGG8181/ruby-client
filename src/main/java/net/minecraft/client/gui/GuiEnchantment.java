@@ -75,9 +75,9 @@ public class GuiEnchantment extends GuiContainer
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
         this.func_147068_g();
     }
 

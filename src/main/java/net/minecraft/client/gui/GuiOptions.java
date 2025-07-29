@@ -30,7 +30,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         int i = 0;
         this.title = I18n.format("options.title");
 
@@ -140,7 +140,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 15, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
     }

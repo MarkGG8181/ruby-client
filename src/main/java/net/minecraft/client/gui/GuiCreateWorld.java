@@ -66,7 +66,7 @@ public class GuiCreateWorld extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.worldNameField.updateCursorCounter();
         this.worldSeedField.updateCursorCounter();
@@ -76,7 +76,7 @@ public class GuiCreateWorld extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
@@ -197,7 +197,7 @@ public class GuiCreateWorld extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
     }
@@ -484,7 +484,7 @@ public class GuiCreateWorld extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("selectWorld.create", new Object[0]), this.width / 2, 20, -1);
 
         if (this.inMoreWorldOptionsDisplay)

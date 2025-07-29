@@ -103,8 +103,8 @@ public abstract class GuiContainer extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
-        super.initGui();
+    public void onInit() {
+        super.onInit();
         this.mc.thePlayer.openContainer = this.inventorySlots;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
@@ -114,7 +114,7 @@ public abstract class GuiContainer extends GuiScreen {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         int i = this.guiLeft;
         int j = this.guiTop;
         this.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
@@ -406,7 +406,7 @@ public abstract class GuiContainer extends GuiScreen {
      * Called when a mouse button is pressed and the mouse is moved around. Parameters are : mouseX, mouseY,
      * lastButtonClicked & timeSinceMouseClick.
      */
-    protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
+    protected void onDrag(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
 
@@ -419,7 +419,7 @@ public abstract class GuiContainer extends GuiScreen {
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
+    protected void onRelease(int mouseX, int mouseY, int state) {
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         int i = this.guiLeft;
         int j = this.guiTop;
@@ -562,7 +562,7 @@ public abstract class GuiContainer extends GuiScreen {
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed() {
+    public void onClose() {
         if (this.mc.thePlayer != null) {
             this.inventorySlots.onContainerClosed(this.mc.thePlayer);
         }
@@ -578,8 +578,8 @@ public abstract class GuiContainer extends GuiScreen {
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen() {
-        super.updateScreen();
+    public void onUpdate() {
+        super.onUpdate();
 
         if (!this.mc.thePlayer.isEntityAlive() || this.mc.thePlayer.isDead) {
             this.mc.thePlayer.closeScreen();

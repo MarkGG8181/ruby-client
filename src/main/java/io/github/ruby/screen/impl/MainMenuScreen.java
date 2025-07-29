@@ -12,15 +12,14 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiSelectWorld;
 
+import static io.github.ruby.util.IMinecraft.mc;
+
 public class MainMenuScreen extends AbstractScreen {
     public MainMenuScreen() {
         super("Main Menu");
     }
 
-    @Override
     public void onInit() {
-        super.onInit();
-
         float offset = 5;
 
         children.add(ImageElement.builder()
@@ -37,8 +36,7 @@ public class MainMenuScreen extends AbstractScreen {
                 .text("Singleplayer")
                 .position(8, offset)
                 .onClick(() -> {
-                    ProcessorStorage.INSTANCE.getByClass(ScreenProcessor.class).setCurrentScreen(null);
-                    mc.displayGuiScreen(new GuiSelectWorld(null));
+                    mc.displayGuiScreen(new GuiSelectWorld(this));
                 })
                 .build(this)
         );
@@ -48,8 +46,7 @@ public class MainMenuScreen extends AbstractScreen {
                 .text("Multiplayer")
                 .position(8, offset)
                 .onClick(() -> {
-                    ProcessorStorage.INSTANCE.getByClass(ScreenProcessor.class).setCurrentScreen(null);
-                    mc.displayGuiScreen(new GuiMultiplayer(null));
+                    mc.displayGuiScreen(new GuiMultiplayer(this));
                 })
                 .build(this)
         );
@@ -59,8 +56,7 @@ public class MainMenuScreen extends AbstractScreen {
                 .text("Options")
                 .position(8, offset)
                 .onClick(() -> {
-                    ProcessorStorage.INSTANCE.getByClass(ScreenProcessor.class).setCurrentScreen(null);
-                    mc.displayGuiScreen(new GuiOptions(null, mc.gameSettings));
+                    mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
                 })
                 .build(this)
         );

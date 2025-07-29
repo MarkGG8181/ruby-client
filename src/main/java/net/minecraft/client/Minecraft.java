@@ -12,7 +12,6 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -79,7 +78,6 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -867,7 +865,7 @@ public class Minecraft implements IThreadListener {
         guiScreenOverrideEvent.post();
 
         if (this.currentScreen != null) {
-            this.currentScreen.onGuiClosed();
+            this.currentScreen.onClose();
         }
 
         if (guiScreenOverrideEvent.screen == null && this.theWorld == null) {
@@ -888,7 +886,7 @@ public class Minecraft implements IThreadListener {
             ScaledResolution scaledresolution = new ScaledResolution(this);
             int width = scaledresolution.getScaledWidth();
             int height = scaledresolution.getScaledHeight();
-            ((GuiScreen) guiScreenOverrideEvent.screen).setWorldAndResolution(this, width, height);
+            ((GuiScreen) guiScreenOverrideEvent.screen).setSize(this, width, height);
             this.skipRenderWorld = false;
         } else {
             this.mcSoundHandler.resumeSounds();
@@ -1508,7 +1506,7 @@ public class Minecraft implements IThreadListener {
 
         if (this.currentScreen != null) {
             try {
-                this.currentScreen.handleInput();
+                this.currentScreen.onLoop();
             } catch (Throwable throwable1) {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable1, "Updating screen events");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Affected screen");
@@ -1522,7 +1520,7 @@ public class Minecraft implements IThreadListener {
 
             if (this.currentScreen != null) {
                 try {
-                    this.currentScreen.updateScreen();
+                    this.currentScreen.onUpdate();
                 } catch (Throwable throwable) {
                     CrashReport crashreport1 = CrashReport.makeCrashReport(throwable, "Ticking screen");
                     CrashReportCategory crashreportcategory1 = crashreport1.makeCategory("Affected screen");
@@ -1576,7 +1574,7 @@ public class Minecraft implements IThreadListener {
                             this.setIngameFocus();
                         }
                     } else {
-                        this.currentScreen.handleMouseInput();
+                        this.currentScreen.onMouse();
                     }
 
                     new MouseInputEvent().post();
@@ -1617,7 +1615,7 @@ public class Minecraft implements IThreadListener {
                     }
 
                     if (this.currentScreen != null) {
-                        this.currentScreen.handleKeyboardInput();
+                        this.currentScreen.onKeyboard();
                         new KeyboardInputEvent(k).post();
                     } else {
                         new KeyboardInputEvent(k).post();

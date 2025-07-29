@@ -36,7 +36,7 @@ public class GuiCommandBlock extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.commandTextField.updateCursorCounter();
     }
@@ -45,7 +45,7 @@ public class GuiCommandBlock extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
@@ -68,7 +68,7 @@ public class GuiCommandBlock extends GuiScreen
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
     }
@@ -147,7 +147,7 @@ public class GuiCommandBlock extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("advMode.setCommand", new Object[0]), this.width / 2, 20, 16777215);
         this.drawString(this.fontRendererObj, I18n.format("advMode.command", new Object[0]), this.width / 2 - 150, 37, 10526880);
         this.commandTextField.drawTextBox();

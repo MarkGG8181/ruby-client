@@ -56,9 +56,9 @@ public class GuiMerchant extends GuiContainer
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
-        super.initGui();
+        super.onInit();
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         this.buttonList.add(this.nextButton = new GuiMerchant.MerchantButton(1, i + 120 + 27, j + 24 - 1, true));
@@ -80,9 +80,9 @@ public class GuiMerchant extends GuiContainer
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
         MerchantRecipeList merchantrecipelist = this.merchant.getRecipes(this.mc.thePlayer);
 
         if (merchantrecipelist != null)

@@ -69,7 +69,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         if (!this.mc.playerController.isInCreativeMode())
         {
@@ -260,11 +260,11 @@ public class GuiContainerCreative extends InventoryEffectRenderer
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         if (this.mc.playerController.isInCreativeMode())
         {
-            super.initGui();
+            super.onInit();
             this.buttonList.clear();
             Keyboard.enableRepeatEvents(true);
             this.searchField = new GuiTextField(0, this.fontRendererObj, this.guiLeft + 82, this.guiTop + 6, 89, this.fontRendererObj.FONT_HEIGHT);
@@ -287,9 +287,9 @@ public class GuiContainerCreative extends InventoryEffectRenderer
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
-        super.onGuiClosed();
+        super.onClose();
 
         if (this.mc.thePlayer != null && this.mc.thePlayer.inventory != null)
         {
@@ -425,7 +425,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state)
+    protected void onRelease(int mouseX, int mouseY, int state)
     {
         if (state == 0)
         {
@@ -442,7 +442,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
             }
         }
 
-        super.mouseReleased(mouseX, mouseY, state);
+        super.onRelease(mouseX, mouseY, state);
     }
 
     /**
@@ -543,9 +543,9 @@ public class GuiContainerCreative extends InventoryEffectRenderer
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         int i = Mouse.getEventDWheel();
 
         if (i != 0 && this.needsScrollBars())

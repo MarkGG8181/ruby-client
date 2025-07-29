@@ -27,7 +27,7 @@ public class GuiDownloadTerrain extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
     }
@@ -35,7 +35,7 @@ public class GuiDownloadTerrain extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         ++this.progress;
 
@@ -50,7 +50,7 @@ public class GuiDownloadTerrain extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawBackground(0);
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.downloadingTerrain", new Object[0]), this.width / 2, this.height / 2 - 50, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
     }

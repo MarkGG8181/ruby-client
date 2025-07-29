@@ -93,7 +93,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen() {
+    public void onUpdate() {
         ++this.panoramaTimer;
     }
 
@@ -115,7 +115,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
 

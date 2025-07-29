@@ -48,7 +48,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.screenTitle = I18n.format("selectWorld.title", new Object[0]);
 
         try {
@@ -73,8 +73,8 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException {
-        super.handleMouseInput();
+    public void onMouse() throws IOException {
+        super.onMouse();
         this.availableWorlds.handleMouseInput();
     }
 
@@ -247,7 +247,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         }
 
         protected void drawBackground() {
-            GuiSelectWorld.this.drawDefaultBackground();
+            GuiSelectWorld.this.drawBackground();
         }
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn) {

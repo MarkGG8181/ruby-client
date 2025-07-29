@@ -50,7 +50,7 @@ public class GuiCreateFlatWorld extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
         this.flatWorldTitle = I18n.format("createWorld.customize.flat.title", new Object[0]);
@@ -71,9 +71,9 @@ public class GuiCreateFlatWorld extends GuiScreen
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         this.createFlatWorldListSlotGui.handleMouseInput();
     }
 
@@ -126,7 +126,7 @@ public class GuiCreateFlatWorld extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.createFlatWorldListSlotGui.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.flatWorldTitle, this.width / 2, 8, 16777215);
         int i = this.width / 2 - 92 - 16;

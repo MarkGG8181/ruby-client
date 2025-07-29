@@ -43,7 +43,7 @@ public class GuiFlatPresets extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
         Keyboard.enableRepeatEvents(true);
@@ -62,16 +62,16 @@ public class GuiFlatPresets extends GuiScreen
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         this.list.handleMouseInput();
     }
 
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed()
+    public void onClose()
     {
         Keyboard.enableRepeatEvents(false);
     }
@@ -118,7 +118,7 @@ public class GuiFlatPresets extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.list.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.presetsTitle, this.width / 2, 8, 16777215);
         this.drawString(this.fontRendererObj, this.presetsShare, 50, 30, 10526880);
@@ -130,10 +130,10 @@ public class GuiFlatPresets extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         this.export.updateCursorCounter();
-        super.updateScreen();
+        super.onUpdate();
     }
 
     public void func_146426_g()

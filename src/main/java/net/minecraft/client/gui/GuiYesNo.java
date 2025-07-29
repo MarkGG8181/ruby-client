@@ -47,7 +47,7 @@ public class GuiYesNo extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 155, this.height / 6 + 96, this.confirmButtonText));
         this.buttonList.add(new GuiOptionButton(1, this.width / 2 - 155 + 160, this.height / 6 + 96, this.cancelButtonText));
@@ -68,7 +68,7 @@ public class GuiYesNo extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, this.messageLine1, this.width / 2, 70, 16777215);
         int i = 90;
 
@@ -97,9 +97,9 @@ public class GuiYesNo extends GuiScreen
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
 
         if (--this.ticksUntilEnable == 0)
         {

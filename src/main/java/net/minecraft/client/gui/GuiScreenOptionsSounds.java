@@ -30,7 +30,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         int i = 0;
         this.title = I18n.format("options.sounds.title", new Object[0]);
@@ -70,7 +70,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 15, 16777215);
         super.onRender(mouseX, mouseY, partialTicks);
     }

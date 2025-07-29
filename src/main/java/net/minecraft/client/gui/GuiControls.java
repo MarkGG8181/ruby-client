@@ -38,7 +38,7 @@ public class GuiControls extends GuiScreen {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
+    public void onInit() {
         this.keyBindingList = new GuiKeyBindingList(this, this.mc);
         this.buttonList.add(new GuiButton(200, this.width / 2 - 155, this.height - 29, 150, 20, I18n.format("gui.done", new Object[0])));
         this.buttonList.add(this.buttonReset = new GuiButton(201, this.width / 2 - 155 + 160, this.height - 29, 150, 20, I18n.format("controls.resetAll", new Object[0])));
@@ -59,8 +59,8 @@ public class GuiControls extends GuiScreen {
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException {
-        super.handleMouseInput();
+    public void onMouse() throws IOException {
+        super.onMouse();
         this.keyBindingList.handleMouseInput();
     }
 
@@ -98,9 +98,9 @@ public class GuiControls extends GuiScreen {
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state) {
+    protected void onRelease(int mouseX, int mouseY, int state) {
         if (state != 0 || !this.keyBindingList.mouseReleased(mouseX, mouseY, state)) {
-            super.mouseReleased(mouseX, mouseY, state);
+            super.onRelease(mouseX, mouseY, state);
         }
     }
 
@@ -130,7 +130,7 @@ public class GuiControls extends GuiScreen {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void onRender(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.keyBindingList.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.screenTitle, this.width / 2, 8, 16777215);
         boolean flag = true;

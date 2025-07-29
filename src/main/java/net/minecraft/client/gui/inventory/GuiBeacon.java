@@ -41,9 +41,9 @@ public class GuiBeacon extends GuiContainer
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
-        super.initGui();
+        super.onInit();
         this.buttonList.add(this.beaconConfirmButton = new GuiBeacon.ConfirmButton(-1, this.guiLeft + 164, this.guiTop + 107));
         this.buttonList.add(new GuiBeacon.CancelButton(-2, this.guiLeft + 190, this.guiTop + 107));
         this.buttonsNotDrawn = true;
@@ -53,9 +53,9 @@ public class GuiBeacon extends GuiContainer
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
-        super.updateScreen();
+        super.onUpdate();
         int i = this.tileBeacon.getField(0);
         int j = this.tileBeacon.getField(1);
         int k = this.tileBeacon.getField(2);
@@ -164,8 +164,8 @@ public class GuiBeacon extends GuiContainer
             }
 
             this.buttonList.clear();
-            this.initGui();
-            this.updateScreen();
+            this.onInit();
+            this.onUpdate();
         }
     }
 

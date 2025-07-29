@@ -60,7 +60,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.mc.getNetHandler().addToSendQueue(new C16PacketClientStatus(C16PacketClientStatus.EnumState.REQUEST_STATS));
         this.buttonList.clear();
@@ -105,7 +105,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
     {
         if (this.loadingAchievements)
         {
-            this.drawDefaultBackground();
+            this.drawBackground();
             this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.downloadingStats", new Object[0]), this.width / 2, this.height / 2, 16777215);
             this.drawCenteredString(this.fontRendererObj, lanSearchStates[(int)(Minecraft.getSystemTime() / 150L % (long)lanSearchStates.length)], this.width / 2, this.height / 2 + this.fontRendererObj.FONT_HEIGHT * 2, 16777215);
         }
@@ -188,7 +188,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
                 this.yScrollTarget = (double)(Y_MAX - 1);
             }
 
-            this.drawDefaultBackground();
+            this.drawBackground();
             this.drawAchievementScreen(mouseX, mouseY, partialTicks);
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
@@ -209,7 +209,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         if (!this.loadingAchievements)
         {

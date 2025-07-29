@@ -31,7 +31,7 @@ public class GuiInventory extends InventoryEffectRenderer
     /**
      * Called from the main game loop to update the screen.
      */
-    public void updateScreen()
+    public void onUpdate()
     {
         if (this.mc.playerController.isInCreativeMode())
         {
@@ -45,7 +45,7 @@ public class GuiInventory extends InventoryEffectRenderer
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         this.buttonList.clear();
 
@@ -55,7 +55,7 @@ public class GuiInventory extends InventoryEffectRenderer
         }
         else
         {
-            super.initGui();
+            super.onInit();
         }
     }
 

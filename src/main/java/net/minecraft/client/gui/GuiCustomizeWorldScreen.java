@@ -56,7 +56,7 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
+    public void onInit()
     {
         int i = 0;
         int j = 0;
@@ -102,9 +102,9 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
     /**
      * Handles mouse input.
      */
-    public void handleMouseInput() throws IOException
+    public void onMouse() throws IOException
     {
-        super.handleMouseInput();
+        super.onMouse();
         this.list.handleMouseInput();
     }
 
@@ -947,9 +947,9 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
     /**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
-    protected void mouseReleased(int mouseX, int mouseY, int state)
+    protected void onRelease(int mouseX, int mouseY, int state)
     {
-        super.mouseReleased(mouseX, mouseY, state);
+        super.onRelease(mouseX, mouseY, state);
 
         if (this.confirmDismissed)
         {
@@ -966,7 +966,7 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
      */
     public void onRender(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
+        this.drawBackground();
         this.list.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 2, 16777215);
         this.drawCenteredString(this.fontRendererObj, this.subtitle, this.width / 2, 12, 16777215);

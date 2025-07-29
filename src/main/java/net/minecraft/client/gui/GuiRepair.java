@@ -38,8 +38,8 @@ public class GuiRepair extends GuiContainer implements ICrafting {
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui() {
-        super.initGui();
+    public void onInit() {
+        super.onInit();
         Keyboard.enableRepeatEvents(true);
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
@@ -55,8 +55,8 @@ public class GuiRepair extends GuiContainer implements ICrafting {
     /**
      * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
-    public void onGuiClosed() {
-        super.onGuiClosed();
+    public void onClose() {
+        super.onClose();
         Keyboard.enableRepeatEvents(false);
         this.inventorySlots.removeCraftingFromCrafters(this);
     }
