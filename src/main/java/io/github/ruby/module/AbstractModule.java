@@ -60,4 +60,13 @@ public abstract class AbstractModule implements IUtility, IMinecraft {
             onDisable();
         }
     }
+
+    public void setExpanded(boolean expanded) {
+        if (settings.isEmpty()) {
+            this.expanded = false;
+            return;
+        }
+
+        this.expanded = expanded;
+    }
 }

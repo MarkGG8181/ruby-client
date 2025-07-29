@@ -7,6 +7,7 @@ import io.github.ruby.util.game.shader.impl.RoundImageShader;
 import io.github.ruby.util.game.shader.impl.RoundRectShader;
 import io.github.ruby.util.game.shader.impl.VGradientRectShader;
 import io.github.ruby.util.use.Param;
+import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL45;
 
@@ -96,6 +97,8 @@ public class ShaderUtil implements IUtility {
     }
 
     public static void rect(float x, float y, float width, float height, Color color) {
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL45.GL_SRC_ALPHA, GL45.GL_ONE_MINUS_SRC_ALPHA);
         rect(x, y, width, height, 0, color);
     }
 

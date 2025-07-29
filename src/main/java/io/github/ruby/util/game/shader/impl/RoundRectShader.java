@@ -4,8 +4,6 @@ import io.github.ruby.util.game.shader.AbstractShader;
 import io.github.ruby.util.game.shader.ShaderUtil;
 import io.github.ruby.util.use.Param;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.opengl.GL45;
 
 import java.awt.*;
 

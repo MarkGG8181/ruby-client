@@ -12,4 +12,6 @@ public interface IFonts {
     CustomFontRenderer MEDIUM_20 = FontStorage.INSTANCE.getFont("Roboto-Medium", 20);
 
     CustomFontRenderer REGULAR_40 = FontStorage.INSTANCE.getFont("Roboto-Regular", 40);
+
+    CustomFontRenderer ICON_22 = FontStorage.INSTANCE.getFont("RubyIcons-Regular", 22);
 }

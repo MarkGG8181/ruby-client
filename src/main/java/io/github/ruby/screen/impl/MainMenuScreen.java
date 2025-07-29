@@ -36,39 +36,39 @@ public class MainMenuScreen extends AbstractScreen {
                 .text("Singleplayer")
                 .position(8, offset)
                 .onClick(() -> {
-                    mc.displayGuiScreen(new GuiSelectWorld(this));
+                    mc.displayGuiScreen(new GuiSelectWorld(null));
                 })
                 .build(this)
         );
 
-        offset += 14;
+        offset += 13.4f;
         children.add(ButtonElement.builder()
                 .text("Multiplayer")
                 .position(8, offset)
                 .onClick(() -> {
-                    mc.displayGuiScreen(new GuiMultiplayer(this));
+                    mc.displayGuiScreen(new GuiMultiplayer(null));
                 })
                 .build(this)
         );
 
-        offset += 14;
+        offset += 13.4f;
         children.add(ButtonElement.builder()
                 .text("Options")
                 .position(8, offset)
                 .onClick(() -> {
-                    mc.displayGuiScreen(new GuiOptions(this, mc.gameSettings));
+                    mc.displayGuiScreen(new GuiOptions(null, mc.gameSettings));
                 })
                 .build(this)
         );
 
-        offset += 14;
+        offset += 13.4f;
         children.add(ButtonElement.builder()
                 .text("Alts")
                 .position(8, offset)
                 .build(this)
         );
 
-        offset += 14;
+        offset += 13.4f;
         children.add(ButtonElement.builder()
                 .text("Quit")
                 .position(8, offset)
