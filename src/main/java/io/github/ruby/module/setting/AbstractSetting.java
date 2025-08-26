@@ -1,6 +1,5 @@
 package io.github.ruby.module.setting;
 
-import io.github.ruby.module.AbstractModule;
 import io.github.ruby.storage.impl.ModuleStorage;
 
 import java.util.function.Consumer;
@@ -16,8 +15,7 @@ public abstract class AbstractSetting<T> {
         this.description = description;
         this.value = value;
 
-        AbstractModule parent = ModuleStorage.INSTANCE.lastModule;
-        parent.settings.add(this);
+        ModuleStorage.INSTANCE.lastModule.settings.add(this);
     }
 
     public T getValue() {
